@@ -17,11 +17,11 @@ class Wukong(object):
         self.height = observation_h
         self.death_cnt = 0
         self.action_dim = action_dim
-        self.obs_window = (336,135,1395,795)
-        self.boss_blood_window = (597, 894, 1104, 906)
-        self.self_blood_window = (186, 956, 339, 963)
-        self.boss_stamina_window = (345, 78, 690, 81)  # 如果后期有格挡条的boss可以用，刀郎没有
-        self.self_stamina_window = (1473, 938, 1510, 1008)  # 棍势条
+        self.obs_window = (336, 121, 1395, 715)
+        self.boss_blood_window = (597, 804, 1104, 815)
+        self.self_blood_window = (186, 860, 339, 866)
+        self.boss_stamina_window = (345, 70, 690, 72)  # 如果后期有格挡条的boss可以用，刀郎没有
+        self.self_stamina_window = (1473, 844, 1510, 907)  # 棍势条
         self.boss_blood = 0
         self.self_blood = 0
         self.boss_stamina = 0
@@ -94,27 +94,27 @@ class Wukong(object):
         print(next_self_blood, boss_blood)
         if next_self_blood < 400:     # self dead 用hsv识别则量值大约在400，用canny大约在40
             print("dead")
-            # print("快死了，当前血量：",self_blood,"马上血量：",next_self_blood)
+            print("快死了，当前血量：",self_blood,"马上血量：",next_self_blood)
             reward = -6
             done = 1
             stop = 0
             emergence_break += 1
-            # if self.death_cnt <= 2:
-            #     self.death_cnt += 1
-            #     print("后跳并喝血")
-            #     pyautogui.keyDown('S')
-            #     directkeys.dodge()
-            #     directkeys.dodge()
-            #     directkeys.dodge()
-            #     time.sleep(0.2)
-            #     pyautogui.press('R')
-            #     time.sleep(1)
-            #     pyautogui.press('R')
-            #     pyautogui.press('R')
-            #     pyautogui.keyUp('S')
-            #     time.sleep(1)
-            # else:
-            #     pass
+            if self.death_cnt <= 2:
+                self.death_cnt += 1
+                print("后跳并喝血")
+                pyautogui.keyDown('S')
+                directkeys.dodge()
+                directkeys.dodge()
+                directkeys.dodge()
+                time.sleep(0.2)
+                pyautogui.press('R')
+                time.sleep(1)
+                pyautogui.press('R')
+                pyautogui.press('R')
+                pyautogui.keyUp('S')
+                time.sleep(1)
+            else:
+                pass
             
             # 用风灵月影增加训练效率
             pyautogui.keyDown('num2')

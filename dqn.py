@@ -70,7 +70,7 @@ def dqn_learning(env,
     # 初始boss模型
     model_resnet_boss = ResNet50_boss(num_classes=10) # 刀郎或其他boss的模型
     model_resnet_boss.load_state_dict(torch.load(
-        'D:/dqn_wukong/RL-ARPG-Agent-1/boss_model_baiyi.pkl'))
+        'boss_model.pkl'))
     model_resnet_boss.to(device)
     model_resnet_boss.eval()
     
